@@ -9,8 +9,8 @@
 * MongoDB queried with <a href="https://github.com/rwynn/monstache">Mongo Express</a>, a web-based MongoDB admin interface;
 * <a href="https://www.elastic.co/kibana/">Kibana</a> used to visualize and search tweets.
 
-&nbsp;
-<h2 style="text-align: center;">Project Components</h2>
+
+<h2>Project Components</h2>
 <p align="center">
 <img src="doc/architecture.png" width=90% />
 </p>
