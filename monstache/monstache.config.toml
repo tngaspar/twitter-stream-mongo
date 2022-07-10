@@ -1,0 +1,14 @@
+#Replace PASSWORD123 by the MONGODB_ROOT_PASSWORD chosen in .env
+mongo-url = "mongodb://root:PASSWORD123@mongo:27017" 
+
+elasticsearch-urls = ["http://elasticsearch:9200/"]
+
+
+direct-read-namespaces = ["tweetdb.tweets"]
+
+[logs]
+error = "./logs/error.log" 
+
+[[mapping]]
+namespace = "tweetdb.tweets" 
+index = "tweetdb"

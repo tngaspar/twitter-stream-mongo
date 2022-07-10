@@ -1,10 +1,16 @@
 #environment variables
 .env
+data/*
+
+#logs
+/**/*.log
+
 
 config.py
 **/__pycache__/*
 **/.ipynb_checkpoints/*
 *.ipynb
+notes.*
 
 #temp gitignore
 test*

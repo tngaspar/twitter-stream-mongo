@@ -3,16 +3,18 @@ version: '3.1'
 services:
 
   mongo:
-    image: mongo
+    image: bitnami/mongodb:5.0.9
     restart: always
     container_name: mdb
     ports:
       - 27017:27017
-    #environment:
-      #MONGO_INITDB_ROOT_USERNAME: root
-      #MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
-      - "mongodata:/data/db"
+      - .:/bitnami/mongodb
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=mongo
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=${MONGODB_REPLICA_SET_KEY}
+      - MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
 
   mongo-express:
     image: mongo-express
@@ -20,10 +22,12 @@ services:
     container_name: mdb-express
     ports:
       - 8081:8081
-    #environment:
-    #  ME_CONFIG_MONGODB_ADMINUSERNAME: root
-    #  ME_CONFIG_MONGODB_ADMINPASSWORD: password
-    #  ME_CONFIG_MONGODB_URL: mongodb://root:password@mongo:27017/
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGODB_ROOT_PASSWORD}
+      - ME_CONFIG_MONGODB_URL=${MDB_HOST_NAME}
+    depends_on:
+      - mongo
 
   twitter-stream:
     container_name: twitter-stream
@@ -40,5 +44,57 @@ services:
       - MDB_COLLECTION_NAME=${MDB_COLLECTION_NAME}
       - SEARCH_RULE=${SEARCH_RULE}
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits: 
+      memlock:
+        soft: -1 
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add: 
+      - IPC_LOCK
+    volumes:
+      - elasticsearch-data-volume:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    depends_on:
+      - mongo
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:6.4.1
+    restart: always
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  monstache:        
+      image: rwynn/monstache:rel5        
+      container_name: monstache       
+      working_dir: /monstache        
+      command: -f ./monstache.config.toml        
+      volumes:          
+          - ./monstache:/monstache/        
+      ports:          
+          - "8080:8080"        
+      restart: always     
+      depends_on:
+        - mongo
+        - elasticsearch
+
 volumes:
+  elasticsearch-data-volume:
+    driver: local
   mongodata:
+    driver: local

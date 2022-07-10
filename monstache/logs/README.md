@@ -1,0 +1,1 @@
+error.log will be created on this directory if an exception is thrown by monstache. E.g. connection error to MongoDB or ElacticSearch.
