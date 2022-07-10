@@ -45,7 +45,7 @@ services:
       - SEARCH_RULE=${SEARCH_RULE}
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.2
     container_name: elasticsearch
     restart: always
     environment:
@@ -69,7 +69,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:6.4.1
+    image: docker.elastic.co/kibana/kibana:8.3.2
     restart: always
     environment:
       SERVER_NAME: kibana
@@ -80,7 +80,7 @@ services:
       - elasticsearch
 
   monstache:        
-      image: rwynn/monstache:rel5        
+      image: rwynn/monstache:rel6        
       container_name: monstache       
       working_dir: /monstache        
       command: -f ./monstache.config.toml        
