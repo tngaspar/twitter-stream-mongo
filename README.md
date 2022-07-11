@@ -1,5 +1,13 @@
-# Twitter Stream – MongoDB, Docker, Elasticsearch, Kibana
+<h1 align="center">Twitter Stream</h1>
 
+<p align="center">
+<img src="https://img.shields.io/badge/-Python-2d2d2d?style=flat-square&logo=python"/>
+<img src="https://img.shields.io/badge/-Docker-black?style=flat-square&logo=docker"/> 
+<img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&logo=mongoDB"/>
+<img src="https://img.shields.io/badge/-ElasticSearch-black?style=flat-square&logo=elasticsearch"/>
+<img src="https://img.shields.io/badge/-Kibana-black?style=flat-square&logo=kibana"/> 
+</p>
+   
 ## Table of Contents
    1. [Features](#features) 
    2. [Project Components](#project-components)
@@ -39,7 +47,7 @@ $ git clone https://github.com/tngaspar/twitter-stream-mongo.git
 
 2. Create `.env` file in project root folder with the following parameters:
 
-```toml
+```
 API_KEY=[Twitter API key]
 API_SECRET_KEY=[Twitter API secrect key]
 BEARER_TOKEN=[Twitter API bearer token]
@@ -93,8 +101,5 @@ Here's a simple example:
 <p align="center">
 <img src="doc/kibana_search.png" width=80% />
 </p>
-
-
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
