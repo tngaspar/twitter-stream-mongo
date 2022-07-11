@@ -20,7 +20,7 @@
 ## Features
 
 * Dockerized realtime tweet streaming to <a href="https://www.mongodb.com/">MongoDB</a> based on search rules. <a href="https://github.com/tweepy/tweepy">Tweepy</a> used to connect to twitter API;
-* MongoDB collection is continuosly synced with an <a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> index using <a href="https://github.com/rwynn/monstache">Monstache</a>;
+* MongoDB collection is continuously synced with an <a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> index using <a href="https://github.com/rwynn/monstache">Monstache</a>;
 * MongoDB queried with <a href="https://github.com/rwynn/monstache">Mongo Express</a>, a web-based MongoDB admin interface;
 * <a href="https://www.elastic.co/kibana/">Kibana</a> used to visualize and search tweets.
 
@@ -59,7 +59,7 @@ MONGODB_ROOT_PASSWORD=[choose Password]
 MONGODB_REPLICA_SET_KEY=[choose ReplicaKey]
 ```
 
-Replace all fields between brackets. You may find the twitter documentation for the `SEARCH RULE` <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule">here</a>. By default the rule has `lan:en`, `-is:retweet` and `-is:reply` implicit so theres no need to add this parameters.
+Replace all fields between brackets. You may find the twitter documentation for the `SEARCH RULE` <a href="https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule">here</a>. By default the rule has `lang:en`, `-is:retweet` and `-is:reply` implicit so there's no need to add this parameters.
 
 3. Add password to `mongo-url` on `monstache/monstache.config.toml`:
 
