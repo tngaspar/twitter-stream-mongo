@@ -7,7 +7,8 @@
 <img src="https://img.shields.io/badge/-ElasticSearch-black?style=flat-square&logo=elasticsearch"/>
 <img src="https://img.shields.io/badge/-Kibana-black?style=flat-square&logo=kibana"/> 
 </p>
-   
+
+
 ## Table of Contents
    1. [Features](#features) 
    2. [Project Components](#project-components)
@@ -16,6 +17,7 @@
    5. [Kibana](#kibana)
       1. [Kibana Dashboard](#kibana-dashboard)
       2. [Kibana Search](#kibana-search) 
+
 
 ## Features
 
@@ -33,10 +35,12 @@ All components of the project are dockerized. The Streaming Client is initiated 
 <img src="doc/architecture.png" width=90% />
 </p>
 
+
 ## Requirements
 
 * <a href="https://docs.docker.com/get-docker/">Docker</a>
 * <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
+
 
 ## Installation
 1. Clone the repo:
