@@ -80,18 +80,29 @@ services:
       - elasticsearch
 
   monstache:        
-      image: rwynn/monstache:rel6        
-      container_name: monstache       
-      working_dir: /monstache        
-      command: -f ./monstache.config.toml        
-      volumes:          
-          - ./monstache:/monstache/        
-      ports:          
-          - "8080:8080"        
-      restart: always     
-      depends_on:
-        - mongo
-        - elasticsearch
+    image: rwynn/monstache:rel6        
+    container_name: monstache       
+    working_dir: /monstache        
+    command: -f ./monstache.config.toml        
+    volumes:          
+        - ./monstache:/monstache/        
+    ports:          
+        - "8080:8080"        
+    restart: always     
+    depends_on:
+      - mongo
+      - elasticsearch
+  
+  flask:
+    container_name: flask
+    build: "./flask_search"
+    restart: always
+    depends_on:
+      - kibana
+      - elasticsearch
+    ports:
+      - "8000:8000"
+
 
 volumes:
   elasticsearch-data-volume:
