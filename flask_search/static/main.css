@@ -17,3 +17,9 @@ body {
     position: fixed; 
     bottom:0;
 }
+
+iframe {
+margin: 0 auto;
+    display: block;
+    border-style:none;
+}
