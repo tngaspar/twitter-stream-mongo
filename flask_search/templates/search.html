@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search Tweets</title>
+    <!-- Tab Icon -->
+    <link rel="icon" href="static/icon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+
+<body>
+    
+    <div class="container">
+        
+        <h1 style="text-align:center; margin-top: 40px; margin-bottom: 0px; ">
+            <strong>
+                <a href="/" style="text-decoration:None; color:rgb(231, 231, 231);">Search Tweets</a>
+            </strong>
+        </h1>
+        <h5 class="text-muted" style="text-align:center; margin-top: 5px; margin-bottom: 15px; ">Check out the <a href="https://github.com/tngaspar/twitter-stream-mongo" target="_blank">source code</a></h5>
+        
+        <h4 class="text-muted">Search tweets in ElasticSearch</h4>
+        <form action="/search" method="post" style="margin-bottom: 40px;">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg " autofocus name="search" placeholder="Search" >
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-lg" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!--<h3 style="margin-bottom: 20px; ">Tweets Found: ({{ response['hits']['total']['value']}})</h3>-->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="17%">Date Stamp</th>
+                    <th width="6%">URL</th>
+                    <th width="17%">Hashtags</th>
+                    <th>Tweet</th>
+                </tr>
+            </thead>
+
+            {% for hit in response['hits']['hits'] %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{ hit['_source']['created_at'] }}</th>
+
+                    <td><a href="https://twitter.com/twitter/status/{{ hit['_source']['tweet_id']}}"
+                            target="_blank">Open <span class="glyphicon glyphicon-new-window"></span></a></td>
+
+                    <td>
+                        {% for tag in hit['_source']['entities']['hashtags'] %}
+                        <a href="https://twitter.com/hashtag/{{tag['tag']}}?src=hashtag_click"
+                            target="_blank">#{{tag['tag']}}</a>
+                        {% endfor %}
+                    </td>
+
+                    <td>{{ hit['_source']['text'] }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+
+        <div class="text-center text-muted">
+            <p>&copy; Tiago Gaspar</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

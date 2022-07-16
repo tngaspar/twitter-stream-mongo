@@ -1,0 +1,25 @@
+.form-control {
+    background-color: rgb(231, 231, 231);
+    ;
+}
+
+.form-control:focus {
+    border-color: #5f5f5f;
+    box-shadow: 0 0 0 0.2rem #cecece;
+}
+
+body {
+    background-color: rgb(40, 40, 40);
+    color: rgb(231, 231, 231);
+}
+
+#copyright-bottom{
+    position: fixed; 
+    bottom:0;
+}
+
+iframe {
+margin: 0 auto;
+    display: block;
+    border-style:none;
+}
