@@ -100,8 +100,15 @@ services:
     depends_on:
       - kibana
       - elasticsearch
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    #environment:
+    #  - SERVER_NAME=${NGINX_SERVER_NAME}
     ports:
-      - "8000:8000"
+      - "80:80"
+    restart: always
 
 
 volumes:
@@ -109,3 +116,7 @@ volumes:
     driver: local
   mongodata:
     driver: local
+
+networks:
+  default:
+    driver: bridge
