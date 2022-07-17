@@ -5,7 +5,8 @@
 <img src="https://img.shields.io/badge/-Docker-black?style=flat-square&logo=docker"/> 
 <img src="https://img.shields.io/badge/-MongoDB-black?style=flat-square&logo=mongoDB"/>
 <img src="https://img.shields.io/badge/-ElasticSearch-black?style=flat-square&logo=elasticsearch"/>
-<img src="https://img.shields.io/badge/-Kibana-black?style=flat-square&logo=kibana"/> 
+<img src="https://img.shields.io/badge/-Kibana-black?style=flat-square&logo=kibana"/>
+<img src="https://img.shields.io/badge/-Flask-black?style=flat-square&logo=flask"/> 
 </p>
 
 
@@ -17,6 +18,9 @@
    5. [Kibana](#kibana)
       1. [Kibana Dashboard](#kibana-dashboard)
       2. [Kibana Search](#kibana-search) 
+   6. [Search Webapp](#search-webapp)
+      1. [Main Page & Dashboard](#main-page--dashboard)
+      2. [Search Output](#search-output)
 
 
 ## Features
@@ -25,14 +29,14 @@
 * MongoDB collection is continuously synced with an <a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> index using <a href="https://github.com/rwynn/monstache">Monstache</a>;
 * MongoDB queried with <a href="https://github.com/rwynn/monstache">Mongo Express</a>, a web-based MongoDB admin interface;
 * <a href="https://www.elastic.co/kibana/">Kibana</a> used to visualize and search tweets.
+* <a href="https://flask.palletsprojects.com/en/2.1.x/">Flask</a> search webapp connected served by <a href="https://www.nginx.com/">nginx</a>. 
 
 
 ## Project Components
-All components of the project are dockerized. The Streaming Client is initiated by `twitter_stream/Dockerfile`. All remaining containers are created from DockerHub images.
+All components of the project are dockerized. The Streaming Client is initiated by `twitter_stream/Dockerfile` and the Search Webapp by `flask_search/Dockerfile`. All remaining containers are created from DockerHub images.
 
-&nbsp;
 <p align="center">
-<img src="doc/architecture.png" width=90% />
+<img src="doc/architecture.png" width=100% />
 </p>
 
 
@@ -81,6 +85,7 @@ $ docker-compose up -d
 After this all containers should be up and running and the streaming initiated.
 
 If running locally you can check MongoDB through Mongo Express at `localhost:8081` and search gathered tweets in Kibana at `localhost:5601`.
+The seach webapp should also be up and accessible at `0.0.0.0` and `localhost` (port `80`).
 
 
 ## Kibana
@@ -104,6 +109,27 @@ Here's a simple example:
 
 <p align="center">
 <img src="doc/kibana_search.png" width=80% />
+</p>
+
+## Search Webapp
+
+The `flask_search` webapp displays a user interface where it is possible to use the Elascticsearch search functionalities. It acts as a search engine on the records present on the index.
+
+### Main Page & Dashboard:
+
+The main page shows the search bar and a snapshot of the Kibana Dashboard.
+
+<p align="center">
+<img src="doc/webapp_index.png" width=90% />
+</p>
+
+
+### Search Output:
+
+Search example with tweets gathered using `software engineer`, `data`, `jobs` and other related keywords as the streaming search rule.
+
+<p align="center">
+<img src="doc/webapp_search.png" width=90% />
 </p>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
