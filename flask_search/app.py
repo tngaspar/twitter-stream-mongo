@@ -3,7 +3,7 @@ from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 
-esearch = Elasticsearch("http://localhost:9200/")
+esearch = Elasticsearch("http://elasticsearch:9200")
 
 @app.route('/')
 def index():
