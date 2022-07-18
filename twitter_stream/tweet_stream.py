@@ -1,8 +1,9 @@
 import tweepy
 import time
 from mongodb import TweetColection
+from elasticsearch import Elasticsearch
 
-
+es = Elasticsearch("http://elasticsearch:9200")
 
 class TweetStream(tweepy.StreamingClient):
     
@@ -20,9 +21,14 @@ class TweetStream(tweepy.StreamingClient):
         # rename dict key
         tweet_dict = tweet.data
         tweet_dict["tweet_id"] = tweet_dict.pop("id")
+
+        #insert to es
+        es.index(index="tweetdb",
+                 document=tweet_dict)
         
         #insert to db
         self.colection.insert(tweet_dict)
+
         
         if self.print_cli is True:
             print("URL: https://twitter.com/twitter/status/"+tweet_dict.get('tweet_id'))
