@@ -7,7 +7,12 @@ esearch = Elasticsearch("http://elasticsearch:9200")
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    response = esearch.cat.count(
+        index="tweetdb",
+        params={"format":"json"}
+    )
+    
+    return render_template('index.html', response=response[0])
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
