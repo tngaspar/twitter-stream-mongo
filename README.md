@@ -9,6 +9,7 @@
 <img src="https://img.shields.io/badge/-Flask-black?style=flat-square&logo=flask"/> 
 </p>
 
+Check out a [Live Demo](http://twittersearch.tgaspar.com/) of the search engine webapp integrated with Elasticsearch [here](http://twittersearch.tgaspar.com/).
 
 ## Table of Contents
    1. [Features](#features) 
