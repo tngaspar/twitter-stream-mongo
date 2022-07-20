@@ -33,5 +33,26 @@ def search():
     )
     return render_template('search.html', response=response )
 
+@app.route('/last')
+def last():
+    response = esearch.search(
+        index="tweetdb",
+        size=100, 
+        body={
+            "sort": [
+                    {
+                    "created_at": {
+                        "order": "desc"
+                    }
+                    }
+                ]
+        }
+    )
+    response_count = esearch.cat.count(
+    index="tweetdb",
+    params={"format":"json"}
+    )
+    return render_template('last.html', response=response, response_count=response_count[0] )
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

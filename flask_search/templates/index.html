@@ -26,7 +26,7 @@
         <h5 class="text-muted" style="text-align:center; margin-top: 5px; margin-bottom: 15px; ">Check out the <a href="https://github.com/tngaspar/twitter-stream-mongo" target="_blank">source code</a></h5>
         
         <h4 class="text-muted">Search tweets in ElasticSearch</h4>
-        <form action="/search" method="post" style="margin-bottom: 40px;">
+        <form action="/search" method="post" style="margin-bottom: 20px;">
             <div class="input-group">
                 <input type="text" class="form-control input-lg " autofocus name="search" placeholder="Search" >
                 <div class="input-group-btn">
@@ -37,9 +37,23 @@
             </div>
         </form>
         
+        <div class="row">
+            
+        <div class="col-sm-9">
+
         <h4>Demo with tweets related to engineering and tech jobs.</h4>
         <h4>Example search: "Software Engineer Paris" or "Data Scientist London".</h4>
-
+    </div>
+    <div class="col-sm-3">
+        <span class="pull-right">
+        <a href="/last">
+            <button class="btn btn-primary btn" type="submit">
+                <h4><i class="fa fa-hourglass"></i> View Last Indexed Tweets</h4>
+            </button>
+        </a>
+        </span>
+    </div>
+</div>
         &nbsp;
         <h1 style="text-align: center;">Number of Indexed Tweets</h1>
         <h1 style="text-align: center; font-size: 85px;"><strong>{{response['count']}}</strong></h1>
